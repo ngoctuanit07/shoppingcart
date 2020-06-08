@@ -1,9 +1,9 @@
 <?php
 
-namespace Johnnguyen\Shoppingcart;
+namespace Johnnguyen\Cart;
 
 use Illuminate\Contracts\Support\Arrayable;
-use Johnnguyen\Shoppingcart\Contracts\Buyable;
+use Johnnguyen\Cart\Contracts\Buyable;
 use Illuminate\Contracts\Support\Jsonable;
 
 class CartItem implements Arrayable, Jsonable
@@ -187,7 +187,7 @@ class CartItem implements Arrayable, Jsonable
     /**
      * Update the cart item from a Buyable.
      *
-     * @param \Johnnguyen\Shoppingcart\Contracts\Buyable $item
+     * @param \Johnnguyen\Cart\Contracts\Buyable $item
      * @return void
      */
     public function updateFromBuyable(Buyable $item)
@@ -220,7 +220,7 @@ class CartItem implements Arrayable, Jsonable
      * Associate the cart item with the given model.
      *
      * @param mixed $model
-     * @return \Johnnguyen\Shoppingcart\CartItem
+     * @return \Johnnguyen\Cart\CartItem
      */
     public function associate($model)
     {
@@ -233,7 +233,7 @@ class CartItem implements Arrayable, Jsonable
      * Set the tax rate.
      *
      * @param int|float $taxRate
-     * @return \Johnnguyen\Shoppingcart\CartItem
+     * @return \Johnnguyen\Cart\CartItem
      */
     public function setTaxRate($taxRate)
     {
@@ -284,9 +284,9 @@ class CartItem implements Arrayable, Jsonable
     /**
      * Create a new instance from a Buyable.
      *
-     * @param \Johnnguyen\Shoppingcart\Contracts\Buyable $item
+     * @param \Johnnguyen\Cart\Contracts\Buyable $item
      * @param array                                      $options
-     * @return \Johnnguyen\Shoppingcart\CartItem
+     * @return \Johnnguyen\Cart\CartItem
      */
     public static function fromBuyable(Buyable $item, array $options = [])
     {
@@ -297,7 +297,7 @@ class CartItem implements Arrayable, Jsonable
      * Create a new instance from the given array.
      *
      * @param array $attributes
-     * @return \Johnnguyen\Shoppingcart\CartItem
+     * @return \Johnnguyen\Cart\CartItem
      */
     public static function fromArray(array $attributes)
     {
@@ -313,7 +313,7 @@ class CartItem implements Arrayable, Jsonable
      * @param string     $name
      * @param float      $price
      * @param array      $options
-     * @return \Johnnguyen\Shoppingcart\CartItem
+     * @return \Johnnguyen\Cart\CartItem
      */
     public static function fromAttributes($id, $name, $price, array $options = [])
     {

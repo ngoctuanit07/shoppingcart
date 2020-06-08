@@ -1,16 +1,14 @@
 <?php
-
-namespace Johnnguyen\Shoppingcart;
-
+namespace Johnnguyen\Cart;
 use Closure;
 use Illuminate\Support\Collection;
 use Illuminate\Session\SessionManager;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Contracts\Events\Dispatcher;
-use Johnnguyen\Shoppingcart\Contracts\Buyable;
-use Johnnguyen\Shoppingcart\Exceptions\UnknownModelException;
-use Johnnguyen\Shoppingcart\Exceptions\InvalidRowIDException;
-use Johnnguyen\Shoppingcart\Exceptions\CartAlreadyStoredException;
+use Johnnguyen\Cart\Contracts\Buyable;
+use Johnnguyen\Cart\Exceptions\UnknownModelException;
+use Johnnguyen\Cart\Exceptions\InvalidRowIDException;
+use Johnnguyen\Cart\Exceptions\CartAlreadyStoredException;
 
 class Cart
 {
@@ -55,7 +53,7 @@ class Cart
      * Set the current cart instance.
      *
      * @param string|null $instance
-     * @return \Johnnguyen\Shoppingcart\Cart
+     * @return \Johnnguyen\Cart\Cart
      */
     public function instance($instance = null)
     {
@@ -84,7 +82,7 @@ class Cart
      * @param int|float $qty
      * @param float     $price
      * @param array     $options
-     * @return \Johnnguyen\Shoppingcart\CartItem
+     * @return \Johnnguyen\Cart\CartItem
      */
     public function add($id, $name = null, $qty = null, $price = null, array $options = [])
     {
@@ -116,7 +114,7 @@ class Cart
      *
      * @param string $rowId
      * @param mixed  $qty
-     * @return \Johnnguyen\Shoppingcart\CartItem
+     * @return \Johnnguyen\Cart\CartItem
      */
     public function update($rowId, $qty)
     {
@@ -178,7 +176,7 @@ class Cart
      * Get a cart item from the cart by its rowId.
      *
      * @param string $rowId
-     * @return \Johnnguyen\Shoppingcart\CartItem
+     * @return \Johnnguyen\Cart\CartItem
      */
     public function get($rowId)
     {
@@ -445,7 +443,7 @@ class Cart
      * @param int|float $qty
      * @param float     $price
      * @param array     $options
-     * @return \Johnnguyen\Shoppingcart\CartItem
+     * @return \Johnnguyen\Cart\CartItem
      */
     private function createCartItem($id, $name, $qty, $price, array $options)
     {
@@ -507,7 +505,7 @@ class Cart
      */
     private function getTableName()
     {
-        return config('cart.database.table', 'shoppingcart');
+        return config('cart.database.table', 'Cart');
     }
 
     /**

@@ -1,20 +1,20 @@
 <?php
 
-namespace Johnnguyen\Tests\Shoppingcart;
+namespace Johnnguyen\Tests\Cart;
 
 use Mockery;
 use PHPUnit\Framework\Assert;
-use Johnnguyen\Shoppingcart\Cart;
+use Johnnguyen\Cart\Cart;
 use Orchestra\Testbench\TestCase;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Support\Collection;
-use Johnnguyen\Shoppingcart\CartItem;
+use Johnnguyen\Cart\CartItem;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Session\SessionManager;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Johnnguyen\Shoppingcart\ShoppingcartServiceProvider;
-use Johnnguyen\Tests\Shoppingcart\Fixtures\ProductModel;
-use Johnnguyen\Tests\Shoppingcart\Fixtures\BuyableProduct;
+use Johnnguyen\Cart\CartServiceProvider;
+use Johnnguyen\Tests\Cart\Fixtures\ProductModel;
+use Johnnguyen\Tests\Cart\Fixtures\BuyableProduct;
 
 class CartTest extends TestCase
 {
@@ -28,7 +28,7 @@ class CartTest extends TestCase
      */
     protected function getPackageProviders($app)
     {
-        return [ShoppingcartServiceProvider::class];
+        return [CartServiceProvider::class];
     }
 
     /**
@@ -340,7 +340,7 @@ class CartTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Johnnguyen\Shoppingcart\Exceptions\InvalidRowIDException
+     * @expectedException \Johnnguyen\Cart\Exceptions\InvalidRowIDException
      */
     public function it_will_throw_an_exception_if_a_rowid_was_not_found()
     {
@@ -620,7 +620,7 @@ class CartTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Johnnguyen\Shoppingcart\Exceptions\UnknownModelException
+     * @expectedException \Johnnguyen\Cart\Exceptions\UnknownModelException
      * @expectedExceptionMessage The supplied model SomeModel does not exist.
      */
     public function it_will_throw_an_exception_when_a_non_existing_model_is_being_associated()
@@ -808,14 +808,14 @@ class CartTest extends TestCase
 
         $serialized = serialize($cart->content());
 
-        $this->assertDatabaseHas('shoppingcart', ['identifier' => $identifier, 'instance' => 'default', 'content' => $serialized]);
+        $this->assertDatabaseHas('Cart', ['identifier' => $identifier, 'instance' => 'default', 'content' => $serialized]);
 
         Event::assertDispatched('cart.stored');
     }
 
     /**
      * @test
-     * @expectedException \Johnnguyen\Shoppingcart\Exceptions\CartAlreadyStoredException
+     * @expectedException \Johnnguyen\Cart\Exceptions\CartAlreadyStoredException
      * @expectedExceptionMessage A cart with identifier 123 was already stored.
      */
     public function it_will_throw_an_exception_when_a_cart_was_already_stored_using_the_specified_identifier()
@@ -860,7 +860,7 @@ class CartTest extends TestCase
 
         $this->assertItemsInCart(1, $cart);
 
-        $this->assertDatabaseMissing('shoppingcart', ['identifier' => $identifier, 'instance' => 'default']);
+        $this->assertDatabaseMissing('Cart', ['identifier' => $identifier, 'instance' => 'default']);
 
         Event::assertDispatched('cart.restored');
     }
@@ -919,7 +919,7 @@ class CartTest extends TestCase
     /**
      * Get an instance of the cart.
      *
-     * @return \Johnnguyen\Shoppingcart\Cart
+     * @return \Johnnguyen\Cart\Cart
      */
     private function getCart()
     {

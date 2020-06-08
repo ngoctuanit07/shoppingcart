@@ -1,8 +1,8 @@
 <?php
 
-namespace Johnnguyen\Tests\Shoppingcart\Fixtures;
+namespace Johnnguyen\Tests\Cart\Fixtures;
 
-use Johnnguyen\Shoppingcart\Contracts\Buyable;
+use Johnnguyen\Cart\Contracts\Buyable;
 
 class BuyableProduct implements Buyable
 {

@@ -1,11 +1,4 @@
-## LaravelShoppingcart
-[![Build Status](https://travis-ci.org/Crinsane/LaravelShoppingcart.png?branch=master)](https://travis-ci.org/Crinsane/LaravelShoppingcart)
-[![Total Downloads](https://poser.pugx.org/Johnnguyen/shoppingcart/downloads.png)](https://packagist.org/packages/Johnnguyen/shoppingcart)
-[![Latest Stable Version](https://poser.pugx.org/Johnnguyen/shoppingcart/v/stable)](https://packagist.org/packages/Johnnguyen/shoppingcart)
-[![Latest Unstable Version](https://poser.pugx.org/Johnnguyen/shoppingcart/v/unstable)](https://packagist.org/packages/Johnnguyen/shoppingcart)
-[![License](https://poser.pugx.org/Johnnguyen/shoppingcart/license)](https://packagist.org/packages/Johnnguyen/shoppingcart)
-
-A simple shoppingcart implementation for Laravel.
+A simple Cart implementation for Laravel.
 
 ## Installation
 
@@ -13,7 +6,7 @@ Install the package through [Composer](http://getcomposer.org/).
 
 Run the Composer require command from the Terminal:
 
-    composer require johnnguyen/shoppingcart
+    composer require johnnguyen/Cart
     
 If you're using Laravel 5.5, this is all there is to do. 
 
@@ -21,18 +14,18 @@ Should you still be on version 5.4 of Laravel, the final steps for you are to ad
 
 Add a new line to the `providers` array:
 
-	Johnnguyen\Shoppingcart\ShoppingcartServiceProvider::class
+	Johnnguyen\Cart\CartServiceProvider::class
 
 And optionally add a new line to the `aliases` array:
 
-	'Cart' => Johnnguyen\Shoppingcart\Facades\Cart::class,
+	'Cart' => Johnnguyen\Cart\Facades\Cart::class,
 
-Now you're ready to start using the shoppingcart in your application.
+Now you're ready to start using the Cart in your application.
 
 **As of version 2 of this package it's possibly to use dependency injection to inject an instance of the Cart class into your controller or other class**
 
 ## Overview
-Look at one of the following topics to learn more about LaravelShoppingcart
+Look at one of the following topics to learn more about LaravelCart
 
 * [Usage](#usage)
 * [Collections](#collections)
@@ -45,7 +38,7 @@ Look at one of the following topics to learn more about LaravelShoppingcart
 
 ## Usage
 
-The shoppingcart gives you the following methods to use:
+The Cart gives you the following methods to use:
 
 ### Cart::add()
 
@@ -333,18 +326,18 @@ foreach(Cart::content() as $row) {
 
 ### Configuration
 To save cart into the database so you can retrieve it later, the package needs to know which database connection to use and what the name of the table is.
-By default the package will use the default database connection and use a table named `shoppingcart`.
+By default the package will use the default database connection and use a table named `Cart`.
 If you want to change these options, you'll have to publish the `config` file.
 
-    php artisan vendor:publish --provider="Johnnguyen\Shoppingcart\ShoppingcartServiceProvider" --tag="config"
+    php artisan vendor:publish --provider="Johnnguyen\Cart\CartServiceProvider" --tag="config"
 
 This will give you a `cart.php` config file in which you can make the changes.
 
 To make your life easy, the package also includes a ready to use `migration` which you can publish by running:
 
-    php artisan vendor:publish --provider="Johnnguyen\Shoppingcart\ShoppingcartServiceProvider" --tag="migrations"
+    php artisan vendor:publish --provider="Johnnguyen\Cart\CartServiceProvider" --tag="migrations"
     
-This will place a `shoppingcart` table's migration file into `database/migrations` directory. Now all you have to do is run `php artisan migrate` to migrate your database.
+This will place a `Cart` table's migration file into `database/migrations` directory. Now all you have to do is run `php artisan migrate` to migrate your database.
 
 ### Storing the cart    
 To store your cart instance into the database, you have to call the `store($identifier) ` method. Where `$identifier` is a random key, for instance the id or username of the user.

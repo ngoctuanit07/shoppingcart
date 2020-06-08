@@ -1,7 +1,7 @@
 {
-    "name": "johnnguyen/shoppingcart",
-    "description": "Laravel Shoppingcart",
-    "keywords": ["laravel", "shoppingcart"],
+    "name": "johnnguyen/cart",
+    "description": "Laravel Cart",
+    "keywords": ["laravel", "Cart"],
     "license": "MIT",
     "authors": [
         {
@@ -20,12 +20,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Johnnguyen\\Shoppingcart\\": "src/"
+            "Johnnguyen\\Cart\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Johnnguyen\\Tests\\Shoppingcart\\": "tests/"
+            "Johnnguyen\\Tests\\Cart\\": "tests/"
         }
     },
     "suggest": {
@@ -35,10 +35,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Johnnguyen\\Shoppingcart\\ShoppingcartServiceProvider"
+                "Johnnguyen\\Cart\\CartServiceProvider"
             ],
             "aliases": {
-                "Cart": "Johnnguyen\\Shoppingcart\\Facades\\Cart"
+                "Cart": "Johnnguyen\\Cart\\Facades\\Cart"
             }
         }
     }
